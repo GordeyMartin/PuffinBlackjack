@@ -61,7 +61,7 @@ public class Game : MonoBehaviour
     {
         if (numCards <= 3)
         {
-            Vector3 spawnPosition = new Vector3(500 + numCards * 250f, 200f, 0f);
+            Vector3 spawnPosition = new Vector3(440 + numCards * 270f, 150f, 0f);
 
             GameObject cardObject = Instantiate(Player_CardPrefab, spawnPosition, Quaternion.identity);
 
@@ -98,7 +98,7 @@ public class Game : MonoBehaviour
     {
         if (numCardsDealer <= 3)
         {
-            Vector3 spawnPosition = new Vector3(500 + numCardsDealer * 250f, 800f, 0f);
+            Vector3 spawnPosition = new Vector3(440 + numCardsDealer * 270f, 926f, 0f);
 
             GameObject cardObject = Instantiate(Player_CardPrefab, spawnPosition, Quaternion.identity);
 
