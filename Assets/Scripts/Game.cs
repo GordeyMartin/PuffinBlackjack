@@ -100,9 +100,12 @@ public class Game : MonoBehaviour
     {
         if (numCards <= 3)
         {
+            Vector3 startDeckPosition = new Vector3(1807f, 520f, 0f);
             Vector3 spawnPosition = new Vector3(440 + numCards * 270f, 150f, 0f);
 
-            GameObject cardObject = Instantiate(Player_CardPrefab, spawnPosition, Quaternion.identity);
+            GameObject cardObject = Instantiate(Player_CardPrefab, startDeckPosition, Quaternion.identity);
+
+            StartCoroutine(MoveCard(cardObject, startDeckPosition, spawnPosition, 1f));
 
             int randomIndex = cardBack * 13 + Random.Range(0, 12);
 
@@ -198,9 +201,16 @@ public class Game : MonoBehaviour
             numCardsDealer++;
         }
     }
-    public void DestroyCard()
-    {
-        Destroy(gameObject);
-    }
 
+    public IEnumerator MoveCard(GameObject cardObject, Vector3 start, Vector3 end, float duration)
+    {
+        float elapsedTime = 0f;
+        while (elapsedTime < duration)
+        {
+            cardObject.transform.position = Vector3.Lerp(start, end, elapsedTime / duration);
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+        cardObject.transform.position = end;
+    }
 }
