@@ -30,10 +30,14 @@ public class Game : MonoBehaviour
 
     public GameObject playerWonPanel;
     public GameObject playerLostPanel;
+    public GameObject cardPanel;
+
+    public int cardBack;
 
     // Start is called before the first frame update
     void Start()
     {
+        cardBack = PlayerPrefs.GetInt("cardBack", 0);
         //Spawn 2 cards in the beginning.
         SpawnCard();
         SpawnCard();
@@ -44,6 +48,35 @@ public class Game : MonoBehaviour
     {
         scoreText.text = "" + score;
         dealerText.text = "" + dealerScore;
+        Debug.Log(cardBack);
+    }
+
+    public void changeCardPanel()
+    {
+        cardPanel.SetActive(true);
+    }
+    public void changeCardPanelDeactivate()
+    {
+        cardPanel.SetActive(false);
+    }
+    //3 Buttons to change the cards' backs.
+    public void changeCardBack0()
+    {
+        cardBack = 0;
+        PlayerPrefs.SetInt("cardBack", cardBack);
+        PlayerPrefs.Save();
+    }
+    public void changeCardBack1()
+    {
+        cardBack = 1;
+        PlayerPrefs.SetInt("cardBack", cardBack);
+        PlayerPrefs.Save();
+    }
+    public void changeCardBack2()
+    {
+        cardBack = 2;
+        PlayerPrefs.SetInt("cardBack", cardBack);
+        PlayerPrefs.Save();
     }
 
     //If clicked hit
@@ -68,11 +101,11 @@ public class Game : MonoBehaviour
 
             GameObject cardObject = Instantiate(Player_CardPrefab, spawnPosition, Quaternion.identity);
 
-            int randomIndex = Random.Range(0, cardSprites.Count);
+            int randomIndex = cardBack * 13 + Random.Range(0, 12);
 
             Card card = cardObject.GetComponent<Card>();
             card.SetCard(cardSprites[randomIndex], cardValues[randomIndex]);
-            if (randomIndex == 12)
+            if (randomIndex == 12 | randomIndex == 25 || randomIndex == 38)
             {
                 if (score < 11)
                 {
@@ -122,7 +155,6 @@ public class Game : MonoBehaviour
     public void RestartGame()
     {
         SceneManager.LoadScene(1);
-        Debug.Log("HELLONIGHT");
     }
 
     public void DealersMove()
