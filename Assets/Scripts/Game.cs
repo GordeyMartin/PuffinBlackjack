@@ -72,8 +72,21 @@ public class Game : MonoBehaviour
 
             Card card = cardObject.GetComponent<Card>();
             card.SetCard(cardSprites[randomIndex], cardValues[randomIndex]);
-
-            score += cardValues[randomIndex];
+            if (randomIndex == 12)
+            {
+                if (score < 11)
+                {
+                    score += 11;
+                }
+                else
+                {
+                    score += 1;
+                }
+            }
+            else
+            {
+                score += cardValues[randomIndex];
+            }
 
             cardSprites.RemoveAt(randomIndex);
             cardValues.RemoveAt(randomIndex);
@@ -108,7 +121,7 @@ public class Game : MonoBehaviour
 
     public void DealersMove()
     {
-        while (dealerScore < score && dealerScore <= 21)
+        while (dealerScore <= score && dealerScore <= 21)
         {
             spawnEnemyCard();
         }
