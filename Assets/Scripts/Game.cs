@@ -119,6 +119,12 @@ public class Game : MonoBehaviour
         SceneManager.LoadScene(0);
     }
 
+    public void RestartGame()
+    {
+        SceneManager.LoadScene(1);
+        Debug.Log("HELLONIGHT");
+    }
+
     public void DealersMove()
     {
         while (dealerScore <= score && dealerScore <= 21)
