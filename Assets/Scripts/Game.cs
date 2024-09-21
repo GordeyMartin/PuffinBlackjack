@@ -167,6 +167,10 @@ public class Game : MonoBehaviour
         {
             playerWin();
         }
+        else
+        {
+            playerLose();
+        }
     }
 
     public void spawnEnemyCard()
