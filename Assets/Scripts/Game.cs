@@ -33,14 +33,10 @@ public class Game : MonoBehaviour
     public GameObject cardPanel;
 
     public int cardBack;
-    public GameObject cardAnimation;
-    public Animator cardAnimator;
 
     // Start is called before the first frame update
     void Start()
     {
-        cardAnimator = cardAnimation.GetComponent<Animator>();
-        cardAnimator.SetTrigger("PlayCardAnimation");
         cardBack = PlayerPrefs.GetInt("cardBack", 0);
         //Spawn 2 cards in the beginning.
         SpawnCard();
@@ -69,18 +65,21 @@ public class Game : MonoBehaviour
         cardBack = 0;
         PlayerPrefs.SetInt("cardBack", cardBack);
         PlayerPrefs.Save();
+        SceneManager.LoadScene(1);
     }
     public void changeCardBack1()
     {
         cardBack = 1;
         PlayerPrefs.SetInt("cardBack", cardBack);
         PlayerPrefs.Save();
+        SceneManager.LoadScene(1);
     }
     public void changeCardBack2()
     {
         cardBack = 2;
         PlayerPrefs.SetInt("cardBack", cardBack);
         PlayerPrefs.Save();
+        SceneManager.LoadScene(1);
     }
 
     //If clicked hit
