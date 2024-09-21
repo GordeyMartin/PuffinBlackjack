@@ -28,6 +28,9 @@ public class Game : MonoBehaviour
     public int numCards = 0;
     public int numCardsDealer = 0;
 
+    public GameObject playerWonPanel;
+    public GameObject playerLostPanel;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -71,15 +74,32 @@ public class Game : MonoBehaviour
             card.SetCard(cardSprites[randomIndex], cardValues[randomIndex]);
 
             score += cardValues[randomIndex];
-            Debug.Log(score);
 
             cardSprites.RemoveAt(randomIndex);
             cardValues.RemoveAt(randomIndex);
 
             numCards++;
-            Debug.Log(numCards);
+            if (score > 21)
+            {
+                playerLose();
+            }
+            if (score == 21)
+            {
+                playerWin();
+            }
         }
     }
+
+    public void playerWin()
+    {
+        playerWonPanel.SetActive(true);
+    }
+
+    public void playerLose()
+    {
+        playerLostPanel.SetActive(true);
+    }
+
     //Button to go back to menu
     public void LoadMenu()
     {
@@ -91,6 +111,10 @@ public class Game : MonoBehaviour
         while (dealerScore < score && dealerScore <= 21)
         {
             spawnEnemyCard();
+        }
+        if (dealerScore > 21 || dealerScore < score)
+        {
+            playerWin();
         }
     }
 
@@ -108,13 +132,11 @@ public class Game : MonoBehaviour
             card.SetCard(cardSpritesDealer[randomIndex], cardValuesDealer[randomIndex]);
 
             dealerScore += cardValuesDealer[randomIndex];
-            Debug.Log(dealerScore);
 
             cardSpritesDealer.RemoveAt(randomIndex);
             cardValuesDealer.RemoveAt(randomIndex);
 
             numCardsDealer++;
-            Debug.Log(numCardsDealer);
         }
     }
 
