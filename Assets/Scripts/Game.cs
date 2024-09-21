@@ -100,8 +100,8 @@ public class Game : MonoBehaviour
     {
         if (numCards <= 3)
         {
-            Vector3 startDeckPosition = new Vector3(1807f, 520f, 0f);
-            Vector3 spawnPosition = new Vector3(440 + numCards * 270f, 150f, 0f);
+            Vector3 startDeckPosition = new Vector3(807f, -2f, 0f);
+            Vector3 spawnPosition = new Vector3(-519 + numCards * 270f, -388f, 0f);
 
             GameObject cardObject = Instantiate(Player_CardPrefab, startDeckPosition, Quaternion.identity);
 
@@ -184,8 +184,8 @@ public class Game : MonoBehaviour
     {
         if (numCardsDealer <= 3)
         {
-            Vector3 startDeckPosition = new Vector3(1807f, 520f, 0f);
-            Vector3 spawnPosition = new Vector3(440 + numCardsDealer * 270f, 926f, 0f);
+            Vector3 startDeckPosition = new Vector3(807f, -2f, 0f);
+            Vector3 spawnPosition = new Vector3(-519 + numCardsDealer * 270f, 376f, 0f);
 
             GameObject cardObject = Instantiate(Player_CardPrefab, startDeckPosition, Quaternion.identity);
 
