@@ -184,9 +184,12 @@ public class Game : MonoBehaviour
     {
         if (numCardsDealer <= 3)
         {
+            Vector3 startDeckPosition = new Vector3(1807f, 520f, 0f);
             Vector3 spawnPosition = new Vector3(440 + numCardsDealer * 270f, 926f, 0f);
 
-            GameObject cardObject = Instantiate(Player_CardPrefab, spawnPosition, Quaternion.identity);
+            GameObject cardObject = Instantiate(Player_CardPrefab, startDeckPosition, Quaternion.identity);
+
+            StartCoroutine(MoveCard(cardObject, startDeckPosition, spawnPosition, 1f));
 
             int randomIndex = Random.Range(0, cardSpritesDealer.Count);
 
